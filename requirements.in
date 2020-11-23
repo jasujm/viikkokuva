@@ -1,0 +1,7 @@
+flask
+msal
+requests
+python-dotenv
+click
+click-log
+python-dateutil
