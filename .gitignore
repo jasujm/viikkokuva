@@ -2,3 +2,5 @@ __pycache__
 .env*
 token_cache.*
 dist/
+package/
+deployment-package.zip

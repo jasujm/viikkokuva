@@ -2,6 +2,7 @@ try:
     import flask
 except ImportError:
     import sys
+
     print("tokenapp extras reqired to run this")
     sys.exit(1)
 

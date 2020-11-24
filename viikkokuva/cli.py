@@ -3,6 +3,7 @@ try:
     import click_log
 except ImportError:
     import sys
+
     print("cli extras required to run this")
     sys.exit(1)
 
