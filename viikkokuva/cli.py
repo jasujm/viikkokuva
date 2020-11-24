@@ -1,8 +1,13 @@
-import click_log
+try:
+    import click
+    import click_log
+except ImportError:
+    import sys
+    print("cli extras required to run this")
+    sys.exit(1)
 
 click_log.basic_config()
 
-import click
 import requests
 
 from . import common

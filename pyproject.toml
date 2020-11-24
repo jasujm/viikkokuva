@@ -1,0 +1,18 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "viikkokuva"
+author = "Jaakko Moisio"
+author-email = "jaakko@moisio.fi"
+requires-python = ">=3.8"
+requires = ["msal" , "requests", "python-dotenv", "python-dateutil"]
+
+[tool.flit.metadata.requires-extra]
+dev = ["black"]
+cli = ["click", "click-log"]
+tokenapp = ["flask"]
+
+[tool.flit.scripts]
+viikkokuva = "viikkokuva.cli:main"

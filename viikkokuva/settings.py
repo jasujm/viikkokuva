@@ -3,7 +3,7 @@ import os
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv("./.env")
 
 AUTH_ENDPOINT = "https://login.microsoftonline.com/consumers"
 GRAPH_ENDPOINT = "https://graph.microsoft.com/v1.0"
