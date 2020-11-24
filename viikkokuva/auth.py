@@ -1,9 +1,27 @@
+import contextlib
+import atexit
 import logging
+import os
 import sys
 
 import msal
 
 from . import settings
+
+if settings.TOKEN_CACHE:
+    cache = msal.SerializableTokenCache()
+    with contextlib.suppress(FileNotFoundError):
+        with open(settings.TOKEN_CACHE) as f:
+            cache.deserialize(f.read())
+
+    def serialize_cache():
+        if cache.has_state_changed:
+            with open(settings.TOKEN_CACHE, "w") as f:
+                f.write(cache.serialize())
+
+    atexit.register(serialize_cache)
+else:
+    cache = None
 
 SCOPES = ["User.Read", "Tasks.ReadWrite", "Tasks.ReadWrite.Shared"]
 
@@ -12,6 +30,7 @@ logger = logging.getLogger(__name__)
 app = msal.PublicClientApplication(
     authority=settings.AUTH_ENDPOINT,
     client_id=settings.CLIENT_ID,
+    token_cache=cache,
 )
 
 
